@@ -18,8 +18,25 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
+
+	public function __construct(){
+		parent::__construct();
+		$this->load->library('Ciqrcode');
+		
+	}
 	public function index()
 	{
 		$this->load->view('welcome_message');
 	}
+
+	public function QRcode($kodenya = '123456789' ){
+		QRcode::png($kodenya,
+			$outfile = false,
+			$level = QR_ECLEVEL_H,
+			$size = 6,
+			$margin =2
+		);
+	}
+	
+
 }
